@@ -1,0 +1,61 @@
+ 
+ 
+ 
+ 
+ '''php 
+ function childs($data) // video
+    {
+        $result = [];
+        $data   = is_array($data) ? $data : json_decode($data);
+        foreach ($data as $datum) {
+            $datas[]                = '';
+            $datas['category_item'] = $datum;
+            $datas['site_id']       = $datum->site_id;
+            if (!empty($datum->category)) {
+                $datas['title']                  = $datum->category->title;
+                $datas['id']                     = $datum->category->id;
+                $datas['view']                   = $datum->category->view;
+                $datas['remote_site_id']         = $datum->category->remote_site_id;
+                $datas['public']                 = $datum->category->public;
+                $datas['public_bbb']             = $datum->category->public_bbb;
+                $datas['danisman_ids']           = $datum->category->danisman_ids;
+                $datas['bbb']                    = $datum->category->bbb;
+                $datas['price']                  = $datum->category->price;
+                $datas['dis_price']              = $datum->category->dis_price;
+                $datas['bbb_price']              = $datum->category->bbb_price;
+                $datas['eski_uye_indirim']       = $datum->category->eski_uye_indirim;
+                $datas['eski_uye_indirim_orani'] = $datum->category->eski_uye_indirim_orani;
+                $datas['category_license']       = $datum->category->category_license;
+                $datas['lisans_baslama']         = $datum->category->lisans_baslama;
+                $datas['lisans_bitis']           = $datum->category->lisans_bitis;
+                $datas['title']                  = $datum->category->title;
+                $datas['rate']                   = $datum->category->rate;
+                $datas['context']                = $datum->category->context;
+                $datas['preview_video_link']     = $datum->category->preview_video_link;
+                $datas['tiny_context']           = $datum->category->tiny_context;
+                $datas['context_image']          = $datum->category->context_image;
+                $datas['toplam_saat']            = $datum->category->toplam_saat;
+                $datas['ozet_bilgi']             = $datum->category->ozet_bilgi;
+                $datas['preview_video']          = $datum->category->preview_video;
+                $datas['cover_img']              = $datum->category->cover_img;
+                $datas['group_link']             = $datum->category->group_link;
+                $datas['group_link']             = $datum->category->group_link;
+                $datas['group_link_canli']       = $datum->category->group_link_canli;
+                $datas['updated_at']             = $datum->category->updated_at;
+                $datas['created_at']             = $datum->category->created_at;
+                $datas['deleted_at']             = $datum->category->deleted_at;
+                $datas['users']                  = empty($datum->category->users) ? null : $datum->category->users;
+                $datas['category']               = $datum->category;
+            }
+            $datas['parent_id']       = $datum->parent_id;
+            $datas['v2Childs']        = [];
+            $datas['videos']          = [];
+            $datas['view_order']      = $datum->view_order;
+            $datas['users_count']     = empty($datum->users_count) ? 0 : $datum->users_count;
+            $datas['videos_count']    = empty($datum->category->videos_count) ? 0 : $datum->category->videos_count;
+            $datas['v2_childs_count'] = empty($datum->v2_childs_count) ? 0 : $datum->v2_childs_count;
+            $result[] = (object)$datas;
+        }
+        return $result;
+    }
+    ''' php
