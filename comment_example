@@ -1,0 +1,45 @@
+ I'm being completely honest with you, I normally kept my own projects up until now, so I take notes according to myself. 
+ But you can rest assured that I will act like a standard commentator to do the job justice.
+ 
+ function sinavFilesCopy($site_id, $sinav, $newSinav, $sinavFind = false)
+    {
+        // sınav dosyaları kopyalanmaz
+        // eklenmiş sınavın dosyalarının kopyalanıp kopyalanmadığını konrol eder
+        $remoteIds = [];
+        if ($sinavFind) {
+            foreach ($newSinav->sinav_files as $item) {
+                $remoteIds[] = $item->remote_id;
+            }
+            foreach ($sinav['sinav_files'] as $sinav_file) {
+                if (!in_array($sinav_file['id'], $remoteIds)) {
+                    // sınav dosyaları kopyalanmaz
+                    foreach ($sinav['sinav_files'] as $sinav_file) {
+                        $newSinavfile                   = $sinav_file;
+                        $newSinavfile['remote_id']      = $sinav_file['id'];
+                        $newSinavfile['site_id']        = $site_id;
+                        $newSinavfile['sinav_id']       = $sinav['id'];
+                        $newSinavfile['remote_site_id'] = $sinav['site_id'];
+                        unset($newSinavfile['created_at']);
+                        unset($newSinavfile['updated_at']);
+                        unset($newSinavfile['id']);
+                        SinavFile::insert($newSinavfile);
+                    }
+                }
+            }
+        } else {
+
+            foreach ($sinav['sinav_files'] as $sinav_file) {
+                $newSinavfile                   = $sinav_file;
+                $newSinavfile['remote_id']      = $sinav_file['id'];
+                $newSinavfile['site_id']        = $site_id;
+                $newSinavfile['sinav_id']       = $sinav['id'];
+                $newSinavfile['remote_site_id'] = $sinav['site_id'];
+                unset($newSinavfile['created_at']);
+                unset($newSinavfile['updated_at']);
+                unset($newSinavfile['id']);
+                SinavFile::insert($newSinavfile);
+            }
+        }
+
+
+    }
