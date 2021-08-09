@@ -1,8 +1,10 @@
  
+ In a project I wrote, categories can be subcategories of each other. 
+ In a project I wrote, categories can be subcategories of each other. 
+ I need to display the objects of the categories in different parts of the site. 
+ I needed a function where I needed to standardize the incoming data.
  
  
- 
- '''php 
  function childs($data) // video
     {
         $result = [];
@@ -58,4 +60,4 @@
         }
         return $result;
     }
-    ''' php
+
